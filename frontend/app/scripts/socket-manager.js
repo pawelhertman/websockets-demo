@@ -1,7 +1,7 @@
 var SocketManager = function () {
   var SOCKET_SERVER_HOST = 'http://localhost:8888';
 
-  var socket = io(SOCKET_SERVER_HOST);
+  var socket = io(SOCKET_SERVER_HOST, {autoConnect: false});
 
   socket.on('connect', function () {
     console.log('Connected');
@@ -11,5 +11,21 @@ var SocketManager = function () {
     console.log('Connection error');
   });
 
-  return socket;
+  function emit(event, message) {
+    socket.emit(event, message);
+  }
+
+  function addListener(event, cb) {
+    socket.on(event, cb);
+  }
+
+  function connect() {
+    socket.connect();
+  }
+
+  return {
+    connect: connect,
+    emit: emit,
+    addListener: addListener
+  };
 };

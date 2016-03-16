@@ -1,38 +1,24 @@
-var SlideManager = function () {
-  var SLIDE_CONTENT_URL = '/slides/';
-  var SLIDE_SELECTOR = 'section.slide';
-  var ACTIVE_SLIDE_CLASS = 'slide--active';
-  var FIRST_SLIDE_NAME = 'main';
+var PresentationManager = function () {
+  var SLIDES_LIST_CONFIG_URL = '/config/slides.json';
 
-  function loadSlides() {
-    var slidesSections = document.querySelectorAll(SLIDE_SELECTOR);
-    var resolvedPromises = 0;
+  var slides = null;
+  var currentSlideIndex = null;
 
-    Array.prototype.forEach.call(slidesSections, function (slideSection, index) {
-      var slideName = slideSection.dataset.slideName;
+  function setListByJson(json) {
+      var jsonObject = JSON.parse(json);
 
-      loadSlide(slideName).then(
-        function (response) {
-          slideSection.innerHTML = response;
-          resolvedPromises++;
-
-          if (resolvedPromises === slidesSections.length) {
-            setActiveSlide(FIRST_SLIDE_NAME);
-          }
-        },
-        function (error) {
-          console.log(error);
-        });
-    });
+      slides = jsonObject.slides;
+      currentSlideIndex = 0;
   }
 
-  function loadSlide(name) {
+  function loadSlideList() {
     return new Promise(function (resolve, reject) {
       var req = new XMLHttpRequest();
-      req.open('GET', SLIDE_CONTENT_URL + name + '.html', true);
+      req.open('GET', SLIDES_LIST_CONFIG_URL, true);
 
       req.onload = function () {
         if (req.status === 200) {
+          setListByJson(req.responseText);
           resolve(req.responseText);
         } else {
           reject(Error(req.statusText));
@@ -47,22 +33,42 @@ var SlideManager = function () {
     });
   }
 
-  function setActiveSlide(name) {
-    var slidesSections = document.querySelectorAll(SLIDE_SELECTOR);
+  function goLeft() {
+    if (!slides) {
+      throw 'List not loaded';
+    }
 
-    Array.prototype.forEach.call(slidesSections, function (slideSection, index) {
-      var slideName = slideSection.dataset.slideName;
+    if (currentSlideIndex === 0) {
+      throw 'Current slide is the first one';
+    }
 
-      if (slideName === name) {
-        slideSection.classList.add(ACTIVE_SLIDE_CLASS);
-      } else {
-        slideSection.classList.remove(ACTIVE_SLIDE_CLASS);
-      }
-    });
+    currentSlideIndex--;
+  }
+
+  function goRight() {
+    if (!slides) {
+      throw 'List not loaded';
+    }
+
+    if (currentSlideIndex === slides.length - 1) {
+      throw 'Current slide is the last one';
+    }
+
+    currentSlideIndex++;
+  }
+
+  function getCurrentSlideName() {
+    if (!slides) {
+      throw 'List not loaded';
+    }
+
+    return slides[currentSlideIndex];
   }
 
   return {
-    loadSlides: loadSlides,
-    setActiveSlide: setActiveSlide
+    loadSlideList: loadSlideList,
+    goLeft: goLeft,
+    goRight: goRight,
+    getCurrentSlideName: getCurrentSlideName
   }
 };
