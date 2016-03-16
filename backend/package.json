@@ -13,7 +13,8 @@
   ],
   "author": "Paweł Hertman",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "express": "^4.13.4",
     "socket.io": "^1.4.5"
   }
 }
