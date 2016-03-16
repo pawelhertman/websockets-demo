@@ -1,1 +1,7 @@
-{"slides": ["title", "what", "how1", "how2", "how3", "when"]}
+{"slides": [
+  "title",
+  "what",
+  "how1", "how2", "how3",
+  "when",
+  "libraries"
+]}

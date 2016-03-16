@@ -74,6 +74,14 @@ h3 {
 p {
 }
 
+a {
+    color: #FFF;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: line-through;
+}
+
 blockquote {
     font-style: italic;
     text-align: justify;
@@ -139,5 +147,8 @@ li {
 
 /*  --------------------------------------               UTILS                   ---------------------------------   */
 .moved-lower {
-    margin-top: 1em;
+    padding-top: 1em;
+}
+.without-padding-bottom {
+    padding-bottom: 0;
 }
