@@ -1,17 +1,9 @@
-var SOCKET_SERVER_HOST = 'http://localhost:8888';
+(function () {
+  var socketManager = new SocketManager();
 
-var socket = io(SOCKET_SERVER_HOST);
+  window.onload = function () {
+    var slideManager = new SlideManager();
 
-socket.on('connect', function () {
-  console.log('Connected');
-});
-
-socket.on('connect_error', function () {
-  console.log('Connection error');
-});
-
-window.onload = function () {
-  var slideManager = new SlideManager();
-
-  slideManager.loadSlides();
-};
+    slideManager.loadSlides();
+  };
+})();
