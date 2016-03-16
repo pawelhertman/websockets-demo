@@ -50,7 +50,7 @@ table {
 
 /*  --------------------------------------            CUSTOM STYLES               ---------------------------------   */
 
-.slide {
+.slide-container {
     display: none;
 
     height: 100%;
@@ -59,6 +59,6 @@ table {
     position: absolute;
 }
 
-.slide--active {
+.slide-container--active {
     display: block;
 }

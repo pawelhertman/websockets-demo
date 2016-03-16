@@ -1,35 +1,20 @@
 var PresentationManager = function () {
-  var SLIDES_LIST_CONFIG_URL = '/config/slides.json';
-
   var slides = null;
   var currentSlideIndex = null;
 
-  function setListByJson(json) {
-      var jsonObject = JSON.parse(json);
-
-      slides = jsonObject.slides;
-      currentSlideIndex = 0;
-  }
-
   function loadSlideList() {
+    var slideListPromise = new SlideList();
+
     return new Promise(function (resolve, reject) {
-      var req = new XMLHttpRequest();
-      req.open('GET', SLIDES_LIST_CONFIG_URL, true);
+      slideListPromise.then(
+        function (slideList) {
+          slides = slideList;
+          currentSlideIndex = 0;
 
-      req.onload = function () {
-        if (req.status === 200) {
-          setListByJson(req.responseText);
-          resolve(req.responseText);
-        } else {
-          reject(Error(req.statusText));
-        }
-      };
-
-      req.onerror = function () {
-        reject(Error('Failed to load slide ' + name));
-      };
-
-      req.send();
+          resolve(slides);
+        },
+        reject
+      );
     });
   }
 

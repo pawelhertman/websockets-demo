@@ -1,22 +1,38 @@
 var Presentation = function () {
   var SLIDE_CONTENT_URL = '/slides/';
-  var SLIDE_SELECTOR = 'section.slide';
-  var ACTIVE_SLIDE_CLASS = 'slide--active';
+  var SLIDE_SELECTOR = 'section.slide-container';
+  var ACTIVE_SLIDE_CLASS = 'slide-container--active';
   var FIRST_SLIDE_NAME = 'main';
 
   function loadSlides() {
-    var slidesSections = document.querySelectorAll(SLIDE_SELECTOR);
+    var slideListPromise = new SlideList();
+
+    slideListPromise.then(
+      function (slideList) {
+        loadSlidesContent(slideList);
+      },
+      function (error) {
+        console.log('Failed to load slide list because of ' + error);
+      }
+    );
+  }
+
+  function loadSlidesContent(slides) {
     var resolvedPromises = 0;
 
-    Array.prototype.forEach.call(slidesSections, function (slideSection, index) {
-      var slideName = slideSection.dataset.slideName;
-
+    slides.forEach(function (slideName) {
       loadSlide(slideName).then(
         function (response) {
-          slideSection.innerHTML = response;
+          var sectionContainer = document.createElement('section');
+          sectionContainer.className = 'slide-container';
+          sectionContainer.dataset.slideName = slideName;
+          sectionContainer.innerHTML = response;
+
+          document.body.appendChild(sectionContainer);
+
           resolvedPromises++;
 
-          if (resolvedPromises === slidesSections.length) {
+          if (resolvedPromises === slides.length) {
             setActiveSlide(FIRST_SLIDE_NAME);
           }
         },
