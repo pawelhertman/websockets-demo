@@ -17,8 +17,9 @@
     "url": "https://github.com/pawelhertman/websockets-demo/issues"
   },
   "homepage": "https://github.com/pawelhertman/websockets-demo",
-  "devDependencies": {
+  "dependencies": {
     "connect": "^3.4.1",
-    "serve-static": "^1.10.2"
+    "serve-static": "^1.10.2",
+    "socket.io-client": "^1.4.5"
   }
 }
