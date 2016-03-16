@@ -52,10 +52,11 @@ html {
     background: #00AE9D;
     color: #FFF;
     font-family: 'Lato', sans-serif;
-    font-size: 18px;
+    font-size: 20px;
 }
 
-h1, h2, h3, p {
+h1, h2, h3, p, blockquote {
+    line-height: 1.2;
     padding: 0.5em 0;
 }
 
@@ -66,8 +67,36 @@ h1 {
 h2 {
     font-size: 2em;
 }
+h3 {
+    font-size: 1.5em;
+}
 
 p {
+}
+
+blockquote {
+    font-style: italic;
+    text-align: justify;
+}
+
+b {
+    font-weight: bold;
+}
+
+cite {
+    display: block;
+    font-size: 0.8em;
+    margin-top: 20px;
+    text-align: right;
+}
+
+ul {
+    list-style-position: inside;
+    list-style-type: circle;
+}
+
+li {
+    margin: 0.5em 0;
 }
 
 
@@ -95,6 +124,9 @@ p {
     padding: 20px;
 }
 
+.slide-container[data-slide-name="title"] {
+    /*background: linear-gradient(#00AE9D 25%, #8AD64F 25%, #8AD64F 75%, #00AE9D 25%);*/
+}
 .slide--title {
     height: 300px;
     position: relative;
@@ -103,4 +135,9 @@ p {
 }
 .slide--title h1 {
     font-weight: bold;
+}
+
+/*  --------------------------------------               UTILS                   ---------------------------------   */
+.moved-lower {
+    margin-top: 1em;
 }

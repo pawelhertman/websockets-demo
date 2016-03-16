@@ -8,7 +8,7 @@
 
     socketManager.addListener('set-slide', function (slideName) {
       console.log('Setting current slide to ' + slideName);
-      presentation.setActiveSlide(slideName);
+      presentation.displayActiveSlide(slideName);
     });
   };
 })();
