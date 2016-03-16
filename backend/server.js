@@ -7,8 +7,18 @@ app.get('/', function(req, res){
   res.send('<h1>Hello world</h1>');
 });
 
-io.on('connection', function (socket){
+io.on('connection', function (socket) {
   console.log('a user connected');
+
+  socket.on('left', function () {
+    console.log('left');
+    //io.emit('left', {for: 'everyone'});
+  });
+
+  socket.on('right', function () {
+    console.log('right');
+    //io.emit('right', {for: 'everyone'});
+  })
 });
 
 http.listen(8888, function(){
