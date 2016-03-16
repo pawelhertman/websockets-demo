@@ -1,5 +1,6 @@
 var SocketManager = function () {
-  var SOCKET_SERVER_HOST = 'http://localhost:8888';
+  //var SOCKET_SERVER_HOST = 'http://localhost:8888';
+  var SOCKET_SERVER_HOST = 'http://192.168.1.12:8888';
 
   var socket = io(SOCKET_SERVER_HOST, {autoConnect: false});
 
