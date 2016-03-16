@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Demo app for presentation about websockets",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git@github.com:pawelhertman/websockets-demo.git"
@@ -15,5 +12,8 @@
     "socket.io"
   ],
   "author": "Paweł Hertman",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "socket.io": "^1.4.5"
+  }
 }
