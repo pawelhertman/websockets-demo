@@ -4,11 +4,6 @@ var io = require('socket.io')(http);
 
 var currentSlide = null;
 
-// @todo remove hello world
-app.get('/', function(req, res){
-  res.send('<h1>Hello world</h1>');
-});
-
 io.on('connection', function (socket) {
   console.log('User connected');
 
