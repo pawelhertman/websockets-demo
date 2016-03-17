@@ -2,6 +2,10 @@
   "title",
   "what",
   "how1", "how2", "how3",
-  "when",
-  "libraries"
+  "when1", "when2", "when3", "when4", "when5",
+  "debugging",
+  "libraries",
+  "socket-io",
+  "bonus-jade",
+  "demo-app"
 ]}

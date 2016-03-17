@@ -1,4 +1,8 @@
 div.slide
-    h1 Jak to działa?
-    h3 2. Połączenie HTTP: Serwer
-    img(src='/images/how2.png')
+    div.slide__content
+        h1 Jak to działa?
+        h3 2. Połączenie HTTP: Serwer
+        p Potwierdzenie requestu o upgrade. Przesyłany jest nagłówek Sec-WebSocket-Accept z zahashowanym kluczem otrzymanym od klienta.&nbsp;
+            | Ze względów bezpieczeństwa ważna jest walidacja nagłówka "origin" po stronie serwera.
+        p W przypadku poufnych danych warto jest zapewnić autentykację np. używając tokenów.
+        img(src='/images/how2.png').moved-lower

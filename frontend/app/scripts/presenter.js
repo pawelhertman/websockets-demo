@@ -5,6 +5,7 @@
   var socketManager = new SocketManager();
   socketManager.connect();
 
+  // @todo currently after reresh, first slide is setted
   var presentationManager = new PresentationManager();
   presentationManager.loadSlideList().then(
     updateCurrentSlide,

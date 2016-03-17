@@ -1,3 +1,9 @@
 div.slide
-    h1 Jak to działa?
-    h3 3. Połączenie Websocket
+    div.slide__content
+        h1 Jak to działa?
+        h3 3. Połączenie Websocket
+        p Po podmianie protokołu na websockety, otrzymujemy połączenie cechujące pełny dupleks.
+        p Dane są poprzedzone małym nagłówkiem i opakowwane w niewielką ramkę.
+        p Połączenia websockets są opisane jako "wiadomości". Wiadomość może być rozbita na wiele ramek danych, co umożliwia przesyłanie danych o nieznanej długości.
+        img(src='/images/WebSocketFrame.png', width='100%').moved-lower--x2
+        cite źródło: http://www.websocket.org/img/WebSocketFrame.png
